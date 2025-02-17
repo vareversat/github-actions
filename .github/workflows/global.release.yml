@@ -2,6 +2,10 @@ name: Action - Release
 on:
   workflow_call:
     inputs:
+      prerelease_suffix:
+        description: 'Suffix to designate a pre-release verion (ex: -rc for v0.1.0-rc)'
+        required: true
+        type: boolean
       is_a_prerelease:
         description: 'Specify if this need to be tagged as a pre-release version'
         required: true
@@ -15,12 +19,27 @@ jobs:
         uses: actions/checkout@v4.1.1
         with:
           fetch-depth: 0
+      - name: 'Compute since and due tag'
+        if: ${{ inputs.is_a_prerelease == false }}
+        env:
+          PRERELEASE_SUFFIX: ${{ inputs.prerelease_suffix }}
+        run: |
+          echo DUE_TAG=$(git tag --list --sort=-creatordate | grep -v ${PRERELEASE_SUFFIX} | sed -n '1p') >> $GITHUB_ENV
+          echo SINCE_TAG=$(git tag --list --sort=-creatordate | grep -v ${PRERELEASE_SUFFIX} | sed -n '2p') >> $GITHUB_ENV
+      - name: 'Compute since and due tag (pre-release)'
+        if: ${{ inputs.is_a_prerelease == true }}
+        env:
+          PRERELEASE_SUFFIX: ${{ inputs.prerelease_suffix }}
+        run: |
+          echo DUE_TAG=$(git tag --list --sort=-creatordate | grep ${PRERELEASE_SUFFIX} | sed -n '1p') >> $GITHUB_ENV
+          echo SINCE_TAG=$(git tag --list --sort=-creatordate | grep ${PRERELEASE_SUFFIX} | sed -n '2p') >> $GITHUB_ENV
       - name: "Generate CHANGELOG.md"
-        uses: heinrichreimer/action-github-changelog-generator@v2.4
+        uses: janheinrichmerker/action-github-changelog-generator@v2.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           output: CHANGELOG.md
-          onlyLastTag: true
+          sinceTag: ${{ env.SINCE_TAG }}
+          dueTag: ${{ env.DUE_TAG }}
       - name: 'Upload CHANGELOG.md'
         uses: actions/upload-artifact@v4.3.1
         with:
