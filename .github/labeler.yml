@@ -1,0 +1,28 @@
+# File changes
+doc:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.md'
+docker-wf:
+  - changed-files:
+      - any-glob-to-any-file: '**/docker.*.yml'
+flutter-wf:
+  - changed-files:
+      - any-glob-to-any-file: '**/flutter.*.yml'
+global-wf:
+  - changed-files:
+      - any-glob-to-any-file: '**/global.*.yml'
+go-wf:
+  - changed-files:
+      - any-glob-to-any-file: '**/go.*.yml'
+repo-ci:
+  - changed-files:
+      - any-glob-to-any-file: '**/repo.*.yml'
+# Branch names
+enhancement:
+  - head-branch: ['^feat']
+bug:
+  - head-branch: ['^fix']
+chore:
+  - head-branch: ['^chore']
+ci:
+  - head-branch: ['^ci']

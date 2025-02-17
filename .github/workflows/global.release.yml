@@ -6,6 +6,8 @@ on:
         description: 'Suffix to designate a pre-release verion (ex: -rc for v0.1.0-rc)'
         required: true
         type: string
+env:
+  NEW_SECTIONS: '{"chore":{"prefix":"**Chores:**","labels":["chore"]}, "ci":{"prefix":"**CI:**","labels":["ci"]}, , "deps":{"prefix":"**Dependencies:**","labels":["dependencies"]}}'
 jobs:
   changelog:
     runs-on: ubuntu-latest
@@ -36,6 +38,7 @@ jobs:
           output: CHANGELOG.md
           sinceTag: ${{ env.SINCE_TAG }}
           excludeTagsRegex: ${{ env.EXCLUDE_TAGS_REGEX }}
+          addSections: ${{ env.NEW_SECTIONS }}
       - name: 'Upload CHANGELOG.md'
         uses: actions/upload-artifact@v4.3.1
         with:

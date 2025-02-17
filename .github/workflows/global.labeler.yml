@@ -1,0 +1,14 @@
+name: Action - Pull Request Labeler
+on:
+  workflow_call:
+jobs:
+  labeler:
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    name: 'Set labels on Pull Request'
+    steps:
+      - uses: actions/labeler@v5
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
