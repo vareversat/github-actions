@@ -56,6 +56,9 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 
 ## Available Workflows ⚙️
 
+### Docker
+- `docker.build-push.yml`: Docker build & push images into Github registry
+
 ### Go
 - `go.lint.yml`: Lint Go code
 - `go.test.yml`: Run Go tests
