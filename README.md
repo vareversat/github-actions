@@ -17,14 +17,14 @@ A curated collection of reusable GitHub Actions workflows organized by programmi
 │       ├── general.release.yml
 │       ├── general.deploy.yml
 │       ├── ... 
-|       ├── [language/category]/[command].yml
+|       ├── [language/category].[command].yml
 ```
 
 ## Naming Convention 📝
 
 All workflow files follow this naming pattern:
 ```
-[language/category]/[command].yml
+[language/category].[command].yml
 ```
 
 For example:
