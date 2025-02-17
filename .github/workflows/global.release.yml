@@ -5,7 +5,7 @@ on:
       prerelease_suffix:
         description: 'Suffix to designate a pre-release verion (ex: -rc for v0.1.0-rc)'
         required: true
-        type: boolean
+        type: string
       is_a_prerelease:
         description: 'Specify if this need to be tagged as a pre-release version'
         required: true
