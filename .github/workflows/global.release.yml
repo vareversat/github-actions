@@ -24,22 +24,22 @@ jobs:
         env:
           PRERELEASE_SUFFIX: ${{ inputs.prerelease_suffix }}
         run: |
-          echo DUE_TAG=$(git tag --list --sort=-creatordate | grep -v ${PRERELEASE_SUFFIX} | sed -n '1p') >> $GITHUB_ENV
           echo SINCE_TAG=$(git tag --list --sort=-creatordate | grep -v ${PRERELEASE_SUFFIX} | sed -n '2p') >> $GITHUB_ENV
+          echo EXCLUDE_TAGS_REGEX="^v[0-9]\.[0-9]\.[0-9]-$(echo ${PRERELEASE_SUFFIX}$)" >> $GITHUB_ENV
       - name: 'Compute since and due tag (pre-release)'
         if: ${{ inputs.is_a_prerelease == true }}
         env:
           PRERELEASE_SUFFIX: ${{ inputs.prerelease_suffix }}
         run: |
-          echo DUE_TAG=$(git tag --list --sort=-creatordate | grep ${PRERELEASE_SUFFIX} | sed -n '1p') >> $GITHUB_ENV
           echo SINCE_TAG=$(git tag --list --sort=-creatordate | grep ${PRERELEASE_SUFFIX} | sed -n '2p') >> $GITHUB_ENV
+          echo EXCLUDE_TAGS_REGEX="^v[0-9]\.[0-9]\.[0-9]$" >> $GITHUB_ENV
       - name: "Generate CHANGELOG.md"
         uses: janheinrichmerker/action-github-changelog-generator@v2.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           output: CHANGELOG.md
           sinceTag: ${{ env.SINCE_TAG }}
-          dueTag: ${{ env.DUE_TAG }}
+          excludeTagsRegex: ${{ env.EXCLUDE_TAGS_REGEX }}
       - name: 'Upload CHANGELOG.md'
         uses: actions/upload-artifact@v4.3.1
         with:
