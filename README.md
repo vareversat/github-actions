@@ -49,7 +49,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: vareversat/github-actions/go/lint.yml@main
+    uses: vareversat/github-actions/.github/workflows/go/lint.yml@main
     with:
       # Add any required inputs here
       parameter1: value1
