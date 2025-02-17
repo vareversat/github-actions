@@ -15,4 +15,4 @@ jobs:
       - name: 'Install yaml linter'
         run: go install github.com/google/yamlfmt/cmd/yamlfmt@v0.16.0
       - name: 'Run linters'
-        run: yamlfmt -lint -conf .\.yamlfmt.yml .
+        run: yamlfmt -lint -conf .yamlfmt.yml .
