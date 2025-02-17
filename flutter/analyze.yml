@@ -1,0 +1,24 @@
+name: Action - Fluter analyze
+on:
+  workflow_call:
+    inputs:
+      flutter_version:
+        description: 'The Flutter used (ex: 2.5.1)'
+        required: true
+        type: string
+jobs:
+  analyze:
+    name: 'Analyze'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout source code'
+        uses: actions/checkout@v4
+      - name: 'Setup flutter action'
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{ inputs.flutter_version }}
+      - name: 'Flutter analyze'
+        run: |-
+          flutter config --no-analytics
+          flutter config --no-cli-animations
+          flutter analyze

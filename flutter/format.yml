@@ -1,0 +1,21 @@
+name: Action - Flutter format
+on:
+  workflow_call:
+    inputs:
+      flutter_version:
+        description: 'The Flutter used (ex: 2.5.1)'
+        required: true
+        type: string
+jobs:
+  format:
+    name: 'Format'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout source code'
+        uses: actions/checkout@v4
+      - name: 'Setup flutter action'
+        uses: subosito/flutter-action@v2.18.0
+        with:
+          flutter-version: ${{ inputs.flutter_version }}
+      - name: 'Flutter format'
+        run: dart format lib --set-exit-if-changed
