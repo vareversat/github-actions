@@ -8,20 +8,16 @@ A curated collection of reusable GitHub Actions workflows organized by programmi
 .
 ├── .github/
 │   └── workflows/
-│       ├── go/
-│       │   ├── go.test.yml
-│       │   ├── go.lint.yml
-│       │   └── ...
-│       ├── flutter/
-│       │   ├── flutter.test.yml
-│       │   ├── flutter.build.yml
-│       │   └── ...
-│       ├── general/
-│       │   ├── general.release.yml
-│       │   ├── general.deploy.yml
-│       │   └── ...
-│       └── [other-language]/
-│           └── [language].[command].yml
+│       ├── go.test.yml
+│       ├── go.lint.yml
+│       ├── ...
+│       ├── flutter.test.yml
+│       ├── flutter.build.yml
+│       ├── ...
+│       ├── general.release.yml
+│       ├── general.deploy.yml
+│       ├── ... 
+|       ├── [language/category]/[command].yml
 ```
 
 ## Naming Convention 📝
@@ -32,9 +28,9 @@ All workflow files follow this naming pattern:
 ```
 
 For example:
-- `go/test.yml`
-- `flutter/test.yml`
-- `general/release.yml`
+- `go.test.yml`
+- `flutter.test.yml`
+- `general.release.yml`
 
 ## Usage 💡
 
@@ -49,7 +45,7 @@ on:
 
 jobs:
   call-workflow:
-    uses: vareversat/github-actions/.github/workflows/go/lint.yml@main
+    uses: vareversat/github-actions/.github/workflows/go.lint.yml@main
     with:
       # Add any required inputs here
       parameter1: value1
@@ -61,19 +57,19 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 ## Available Workflows ⚙️
 
 ### Go
-- `lint.yml`: Lint Go code
-- `test.yml`: Run Go tests
-- `list.yml`: List Go dependencies
+- `go.lint.yml`: Lint Go code
+- `go.test.yml`: Run Go tests
+- `go.list.yml`: List Go dependencies
 
 ### Flutter
-- `analyze.yml`: Run Flutter analyzes
-- `format.yml`: Run Flutter format
-- `test.yml`: Run Flutter tests
-- `build.yml`: Build Flutter applications
+- `flutter.analyze.yml`: Run Flutter analyzes
+- `flutter.format.yml`: Run Flutter format
+- `flutter.test.yml`: Run Flutter tests
+- `flutter.build.yml`: Build Flutter applications
 
 ### General Purpose
-- `release.yml`: Create project releases
-- `page.yml`: Publish Github page
+- `global.release.yml`: Create project releases
+- `global.page.yml`: Publish Github page
 
 [Other sections will be added as more workflows are included]
 
