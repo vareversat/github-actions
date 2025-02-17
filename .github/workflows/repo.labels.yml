@@ -1,6 +1,6 @@
 name: Workflow - Label PR
 on:
-  - pull_request
+  - pull_request_target
 jobs:
   release:
     uses: ./.github/workflows/global.labeler.yml
