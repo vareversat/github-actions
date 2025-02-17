@@ -61,16 +61,19 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 ## Available Workflows ⚙️
 
 ### Go
-- `test.yml`: Run Go tests
 - `lint.yml`: Lint Go code
+- `test.yml`: Run Go tests
+- `list.yml`: List Go dependencies
 
 ### Flutter
+- `analyze.yml`: Run Flutter analyzes
+- `format.yml`: Run Flutter format
 - `test.yml`: Run Flutter tests
 - `build.yml`: Build Flutter applications
 
 ### General Purpose
 - `release.yml`: Create project releases
-- More general-purpose workflows will be added here
+- `page.yml`: Publish Github page
 
 [Other sections will be added as more workflows are included]
 
