@@ -10,6 +10,5 @@ jobs:
   release:
     uses: ./.github/workflows/global.release.yml
     with:
-      is_a_prerelease: false
       prerelease_suffix: 'rc'
     secrets: inherit
