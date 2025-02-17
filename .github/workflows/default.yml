@@ -23,7 +23,7 @@ jobs:
         run: yamlfmt -lint -conf .yamlfmt.yml .
   release:
     needs: [lint]
-    uses: .github/workflows/global/release.yml
+    uses: ./.github/workflows/global/release.yml
     with:
       is_a_prerelease: false
     secrets: inherit
