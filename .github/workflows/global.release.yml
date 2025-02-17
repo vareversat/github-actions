@@ -7,7 +7,7 @@ on:
         required: true
         type: string
 env:
-  NEW_SECTIONS: '{"chore":{"prefix":"**Chores:**","labels":["chore"]}, "ci":{"prefix":"**CI:**","labels":["ci"]}, , "deps":{"prefix":"**Dependencies:**","labels":["dependencies"]}}'
+  NEW_SECTIONS: '{"chore":{"prefix":"**Chores:**","labels":["chore"]}, "ci":{"prefix":"**CI:**","labels":["ci"]}, "deps":{"prefix":"**Dependencies:**","labels":["dependencies"]}}'
 jobs:
   changelog:
     runs-on: ubuntu-latest
