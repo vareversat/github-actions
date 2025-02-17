@@ -6,10 +6,6 @@ on:
         description: 'Suffix to designate a pre-release verion (ex: -rc for v0.1.0-rc)'
         required: true
         type: string
-      is_a_prerelease:
-        description: 'Specify if this need to be tagged as a pre-release version'
-        required: true
-        type: boolean
 jobs:
   changelog:
     runs-on: ubuntu-latest
@@ -20,14 +16,14 @@ jobs:
         with:
           fetch-depth: 0
       - name: 'Compute since and excluded tag'
-        if: ${{ inputs.is_a_prerelease == false }}
+        if: ${{ !endsWith(github.ref, inputs.prerelease_suffix) }}
         env:
           PRERELEASE_SUFFIX: ${{ inputs.prerelease_suffix }}
         run: |
           echo SINCE_TAG=$(git tag --list --sort=-creatordate | grep -v ${PRERELEASE_SUFFIX} | sed -n '2p') >> $GITHUB_ENV
           echo EXCLUDE_TAGS_REGEX="^v[0-9]\.[0-9]\.[0-9]-$(echo ${PRERELEASE_SUFFIX}$)" >> $GITHUB_ENV
       - name: 'Compute since and excluded (pre-release)'
-        if: ${{ inputs.is_a_prerelease == true }}
+        if: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
         env:
           PRERELEASE_SUFFIX: ${{ inputs.prerelease_suffix }}
         run: |
@@ -62,6 +58,6 @@ jobs:
       - name: 'Generate Github release'
         uses: softprops/action-gh-release@v2
         with:
-          prerelease: ${{ inputs.is_a_prerelease }}
+          prerelease: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
           name: '${{ github.ref_name }} 🚀'
           body_path: changelog/CHANGELOG.md
