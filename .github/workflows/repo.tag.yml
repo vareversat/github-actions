@@ -1,0 +1,15 @@
+name: Default
+on:
+  push:
+    tags:
+      - 'v*'
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  release:
+    needs: [lint]
+    uses: ./.github/workflows/global.release.yml
+    with:
+      is_a_prerelease: false
+    secrets: inherit
