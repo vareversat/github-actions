@@ -6,20 +6,22 @@ A curated collection of reusable GitHub Actions workflows organized by programmi
 
 ```
 .
-├── go/
-│   ├── test.yml
-│   ├── lint.yml
-│   └── ...
-├── flutter/
-│   ├── test.yml
-│   ├── build.yml
-│   └── ...
-├── general/
-│   ├── release.yml
-│   ├── deploy.yml
-│   └── ...
-└── [other-language]/
-    └── [command].yml
+├── .github/
+│   └── workflows/
+│       ├── go/
+│       │   ├── go.test.yml
+│       │   ├── go.lint.yml
+│       │   └── ...
+│       ├── flutter/
+│       │   ├── flutter.test.yml
+│       │   ├── flutter.build.yml
+│       │   └── ...
+│       ├── general/
+│       │   ├── general.release.yml
+│       │   ├── general.deploy.yml
+│       │   └── ...
+│       └── [other-language]/
+│           └── [language].[command].yml
 ```
 
 ## Naming Convention 📝

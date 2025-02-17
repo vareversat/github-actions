@@ -23,7 +23,7 @@ jobs:
         run: yamlfmt -lint -conf .yamlfmt.yml .
   release:
     needs: [lint]
-    uses: vareversat/github-actions/global/release.yml@main
+    uses: .github/workflows/global/release.yml@main
     with:
       is_a_prerelease: false
     secrets: inherit
