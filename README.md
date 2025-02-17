@@ -60,15 +60,15 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 
 ## Available Workflows ⚙️
 
-### Go 🔵
+### Go
 - `test.yml`: Run Go tests
 - `lint.yml`: Lint Go code
 
-### Flutter 💙
+### Flutter
 - `test.yml`: Run Flutter tests
 - `build.yml`: Build Flutter applications
 
-### General Purpose 🛠️
+### General Purpose
 - `release.yml`: Create project releases
 - More general-purpose workflows will be added here
 
