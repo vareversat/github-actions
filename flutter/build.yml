@@ -10,10 +10,6 @@ on:
         description: 'Android build file type output (apk or abb)'
         required: true
         type: string
-    secrets:
-      secrets_passphrase:
-        description: 'Passphrase to decrypt secret configurations'
-        required: true
 jobs:
   build_android:
     name: 'Android (${{ inputs.android_output }})'
@@ -26,7 +22,7 @@ jobs:
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
-          PASSPHRASE: ${{ secrets.secrets_passphrase }}
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: 'Set up JAVA'
@@ -83,7 +79,7 @@ jobs:
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
-          PASSPHRASE: ${{ secrets.secrets_passphrase }}
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: '🥺'
@@ -97,7 +93,7 @@ jobs:
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
-          PASSPHRASE: ${{ secrets.secrets_passphrase }}
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: '🥺'

@@ -1,6 +1,14 @@
-name: Linter
+name: Publish a new release
+
 on:
   push:
+    tags:
+      - 'v*'
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   lint:
     name: 'Lint'
@@ -16,3 +24,9 @@ jobs:
         run: go install github.com/google/yamlfmt/cmd/yamlfmt@v0.16.0
       - name: 'Run linters'
         run: yamlfmt -lint -conf .yamlfmt.yml .
+  release:
+    needs: [ lint ]
+    uses: ./global/release.yml
+    with:
+      is_a_prerelease: false
+    secrets: inherit

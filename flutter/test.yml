@@ -6,13 +6,6 @@ on:
         description: 'The Flutter used (ex: 2.5.1)'
         required: true
         type: string
-    secrets:
-      codecov_token:
-        description: 'Codecov secret token to upload coverage results'
-        required: true
-      secrets_passphrase:
-        description: 'Passphrase to decrypt secret configurations'
-        required: true
 jobs:
   test:
     name: 'Test'
@@ -23,7 +16,7 @@ jobs:
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
-          PASSPHRASE: ${{ secrets.secrets_passphrase }}
+          PASSPHRASE: ${{ secrets.PASSPHRASE }}
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: 'Setup flutter action'
@@ -38,5 +31,5 @@ jobs:
       - name: 'Upload coverage report'
         uses: codecov/codecov-action@v4.6.0
         with:
-          token: ${{ secrets.codecov_token }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage/

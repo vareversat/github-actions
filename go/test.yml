@@ -6,10 +6,6 @@ on:
         description: 'The Go version used (ex: 1.21.4)'
         required: true
         type: string
-    secrets:
-      codecov_token:
-        description: 'Codecov secret token to upload coverage results'
-        required: true
 jobs:
   test:
     name: 'Test'
@@ -26,5 +22,5 @@ jobs:
       - name: 'Upload coverage report'
         uses: codecov/codecov-action@v4.1.0
         with:
-          token: ${{ secrets.codecov_token }}
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage.out

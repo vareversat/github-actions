@@ -6,10 +6,6 @@ on:
         description: 'The Go version used (ex: 1.21.4)'
         required: true
         type: string
-    secrets:
-      github_token:
-        description: 'Github token for linter results'
-        required: true
 permissions:
   checks: write
   contents: write
@@ -28,4 +24,4 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           gofmt: true
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
