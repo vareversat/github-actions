@@ -6,6 +6,14 @@ on:
         description: 'Suffix to designate a pre-release verion (ex: -rc for v0.1.0-rc)'
         required: true
         type: string
+      add_artifacts:
+        description: 'Wether or not upload artifacts with the release'
+        required: true
+        type: boolean
+      artifacts_pattern:
+        description: 'Files matching this pattern will be added to the release'
+        required: true
+        type: string
 env:
   NEW_SECTIONS: '{"chore":{"prefix":"**Chores:**","labels":["chore"]}, "ci":{"prefix":"**CI:**","labels":["ci"]}, "deps":{"prefix":"**Dependencies:**","labels":["dependencies"]}}'
 jobs:
@@ -58,9 +66,26 @@ jobs:
         with:
           path: changelog
           name: changelog
+      - name: 'Download builds artifacts'
+        if: ${{ inputs.add_artifacts == true }}
+        uses: actions/download-artifact@v4.1.4
+        with:
+          pattern: ${{ inputs.artifacts_pattern }}
+          path: build-artifacts
+          merge-multiple: true
       - name: 'Generate Github release'
+        if: ${{ inputs.add_artifacts == false }}
         uses: softprops/action-gh-release@v2
         with:
           prerelease: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
           name: '${{ github.ref_name }} 🚀'
           body_path: changelog/CHANGELOG.md
+      - name: 'Generate Github release with build artifacts'
+        if: ${{ inputs.add_artifacts == true }}
+        uses: softprops/action-gh-release@v2
+        with:
+          prerelease: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
+          name: '${{ github.ref_name }} 🚀'
+          body_path: changelog/CHANGELOG.md
+          files: |
+            build-artifacts/*
