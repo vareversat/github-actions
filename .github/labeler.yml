@@ -20,10 +20,10 @@ repo-ci:
 # Branch names
 
 enhancement:
-  - head-branch: ['^feat']
+  - head-branch: ['feat']
 bug:
-  - head-branch: ['^fix']
+  - head-branch: ['fix']
 chore:
-  - head-branch: ['^chore']
+  - head-branch: ['chore']
 ci:
-  - head-branch: ['^ci']
+  - head-branch: ['ci']
