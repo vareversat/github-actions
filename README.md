@@ -63,6 +63,7 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 - `go.lint.yml`: Lint Go code
 - `go.test.yml`: Run Go tests
 - `go.list.yml`: List Go dependencies
+- `go.build.yml`: Build Go binaries on Mac, Win & Linux OS + upload artifacts
 
 ### Flutter
 - `flutter.analyze.yml`: Run Flutter analyzes

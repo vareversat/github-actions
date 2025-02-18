@@ -1,0 +1,42 @@
+name: Action - Go Build
+on:
+  workflow_call:
+    inputs:
+      go_version:
+        description: 'The Go version used (ex: 1.21.4)'
+        required: true
+        type: string
+jobs:
+  build:
+    name: 'Build on Mac, Win & Linux'
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        include:
+          - os: windows-latest
+            os_small: win
+            arch: amd64
+          - os: ubuntu-latest
+            os_small: linux
+            arch: amd64
+          - os: macos-latest
+            os_small: darwin
+            arch: amd64
+    steps:
+      - name: 'Checkout source code'
+        uses: actions/checkout@v4.2.2
+      - name: 'Setup Go action'
+        uses: actions/setup-go@v5.3.0
+        with:
+          go-version: ${{ inputs.go_version }}
+      - name: 'Compute the repo name'
+        run: |
+          echo "REPO_NAME=${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
+      - name: 'Go build (matrix)'
+        run: go build -o $REPO_NAME_${{ matrix.os_small }}_${{ matrix.arch }} -v
+      - name: 'Upload artifact'
+        uses: actions/upload-artifact@v4.6.0
+        with:
+          name: $REPO_NAME_binary_${{ matrix.os_small }}_${{ matrix.arch }}
+          path: $REPO_NAME_${{ matrix.os_small }}_${{ matrix.arch }}
