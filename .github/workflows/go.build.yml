@@ -8,7 +8,7 @@ on:
         type: string
 jobs:
   build:
-    name: 'Build on Mac, Win & Linux'
+    name: 'Go build'
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -38,5 +38,5 @@ jobs:
       - name: 'Upload artifact'
         uses: actions/upload-artifact@v4.6.0
         with:
-          name: $REPO_NAME_binary_${{ matrix.os_small }}_${{ matrix.arch }}
-          path: $REPO_NAME_${{ matrix.os_small }}_${{ matrix.arch }}
+          name: ${{ env.REPO_NAME_ }}_binary_${{ matrix.os_small }}_${{ matrix.arch }}
+          path: ${{ env.REPO_NAME_ }}_${{ matrix.os_small }}_${{ matrix.arch }}
