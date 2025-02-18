@@ -30,13 +30,10 @@ jobs:
         uses: actions/setup-go@v5.3.0
         with:
           go-version: ${{ inputs.go_version }}
-      - name: 'Compute the repo name'
-        run: |
-          echo "REPO_NAME=${GITHUB_REPOSITORY#$GITHUB_REPOSITORY_OWNER/}" >> $GITHUB_ENV
       - name: 'Go build (matrix)'
-        run: go build -o $REPO_NAME_${{ matrix.os_small }}_${{ matrix.arch }} -v
+        run: go build -o ${{ github.event.repository.name }}_${{ matrix.os_small }}_${{ matrix.arch }} -v
       - name: 'Upload artifact'
         uses: actions/upload-artifact@v4.6.0
         with:
-          name: ${{ env.REPO_NAME_ }}_binary_${{ matrix.os_small }}_${{ matrix.arch }}
-          path: ${{ env.REPO_NAME_ }}_${{ matrix.os_small }}_${{ matrix.arch }}
+          name: ${{ github.event.repository.name }}_binary_${{ matrix.os_small }}_${{ matrix.arch }}
+          path: ${{ github.event.repository.name }}_${{ matrix.os_small }}_${{ matrix.arch }}
