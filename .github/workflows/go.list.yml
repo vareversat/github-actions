@@ -18,6 +18,6 @@ jobs:
         with:
           go-version: ${{ inputs.go_version }}
       - name: 'Go list package'
-        run: go list -m 'github.com/${{ github.repository }}@${{ github.ref_name }}-${{ github.sha }}'
+        run: go list -m 'github.com/${{ github.repository }}@${{ github.ref_name }}'
         env:
           GOPROXY: proxy.golang.org
