@@ -11,8 +11,8 @@ on:
         required: true
         type: string
 jobs:
-  lint:
-    name: 'Lint'
+  publish:
+    name: 'Publish'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout source code'
@@ -35,7 +35,7 @@ jobs:
         run: |
           cd ${{ inputs.function_path }}/functions
           npm ci
-      - name: 'Lint & build'
+      - name: 'Publish'
         run: |
           cd ${{ inputs.function_path }}
           firebase deploy --only functions
