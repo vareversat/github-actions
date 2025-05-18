@@ -71,6 +71,11 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 - `flutter.test.yml`: Run Flutter tests
 - `flutter.build.yml`: Build Flutter applications
 
+### Firebase
+
+- `firebase.function.lint.yml`: Lint Typescript code
+- `firebase.function.publish.yml`: Build and deploy functions
+
 ### General Purpose
 - `global.release.yml`: Create project releases
 - `global.page.yml`: Publish Github page
