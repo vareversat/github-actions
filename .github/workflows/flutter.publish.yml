@@ -32,7 +32,7 @@ jobs:
         with:
           name: 'android-build'
       - name: 'Setup Ruby'
-        uses: ruby/setup-ruby@v1.241.0
+        uses: ruby/setup-ruby@v1.242.0
         with:
           ruby-version: '3.3.6'
           bundler-cache: true
