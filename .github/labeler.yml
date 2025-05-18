@@ -17,11 +17,13 @@ go-wf:
 firebase-wf:
   - changed-files:
       - any-glob-to-any-file: '**/firebase.*.yml'
+fastlane-wf:
+  - changed-files:
+      - any-glob-to-any-file: '**/fastlane.*.yml'
 repo-ci:
   - changed-files:
       - any-glob-to-any-file: '**/repo.*.yml'
 # Branch names
-
 enhancement:
   - head-branch: ['feat']
 bug:
