@@ -8,6 +8,7 @@ on:
         type: string
 jobs:
   lane:
+    name: 'Get lane name'
     runs-on: ubuntu-latest
     outputs:
       lane: ${{ steps.fastlane_lane.outputs.lane }}

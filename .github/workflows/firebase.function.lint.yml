@@ -29,7 +29,8 @@ jobs:
           node-version: ${{ inputs.node_version }}
           cache: 'npm'
           cache-dependency-path: '**/package-lock.json'
-      - run: npm install -g firebase-tools@14.4.0
+      - name: 'Install firebase-tools'
+        run: npm install -g firebase-tools@14.4.0
       - name: 'Install npm packages'
         run: |
           cd ${{ inputs.function_path }}/functions
