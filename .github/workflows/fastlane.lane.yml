@@ -1,0 +1,32 @@
+name: Action - Get the correct Fastlane lane
+on:
+  workflow_call:
+    inputs:
+      prerelease_suffix:
+        description: 'Suffix to designate a pre-release verion (ex: -rc for v0.1.0-rc)'
+        required: true
+        type: string
+jobs:
+  lane:
+    runs-on: ubuntu-latest
+    outputs:
+      lane: ${{ steps.fastlane_lane.outputs.lane }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Compute the correct Fastlane lane
+        id: fastlane_lane
+        run: |
+          if [[ "${{ github.ref }}" != refs/tags/* ]]; then
+            echo "Last push is not a tag, lane will be dry_run"
+            echo "lane=dry_run" >> $GITHUB_OUTPUT
+          else
+            TAG_NAME=$(basename "${{ github.ref }}")
+            if [[ "$TAG_NAME" == v*-${{ inputs.prerelease_suffix }} ]]; then
+              echo "Last push is a pre-release tag, lane will be beta"
+              echo "lane=beta" >> $GITHUB_OUTPUT
+            else
+              echo "Last push is a tag, lane will be production"
+              echo "lane=production" >> $GITHUB_OUTPUT
+            fi
+          fi

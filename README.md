@@ -57,15 +57,22 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 ## Available Workflows ⚙️
 
 ### Docker
+
 - `docker.build-push.yml`: Docker build & push images into Github registry
 
 ### Go
+
 - `go.lint.yml`: Lint Go code
 - `go.test.yml`: Run Go tests
 - `go.list.yml`: List Go dependencies
 - `go.build.yml`: Build Go binaries on Mac, Win & Linux OS + upload artifacts
 
+### Fastlane
+
+- `fastlane.lane.yml`: Compute the lane name based on the last push type
+
 ### Flutter
+
 - `flutter.analyze.yml`: Run Flutter analyzes
 - `flutter.format.yml`: Run Flutter format
 - `flutter.test.yml`: Run Flutter tests
@@ -77,6 +84,7 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 - `firebase.function.publish.yml`: Build and deploy functions
 
 ### General Purpose
+
 - `global.release.yml`: Create project releases
 - `global.page.yml`: Publish Github page
 
