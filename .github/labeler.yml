@@ -14,6 +14,9 @@ global-wf:
 go-wf:
   - changed-files:
       - any-glob-to-any-file: '**/go.*.yml'
+firebase-wf:
+  - changed-files:
+      - any-glob-to-any-file: '**/firebase.*.yml'
 repo-ci:
   - changed-files:
       - any-glob-to-any-file: '**/repo.*.yml'
