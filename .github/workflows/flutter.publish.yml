@@ -30,7 +30,7 @@ jobs:
       - name: 'Download Artifact'
         uses: actions/download-artifact@v4
         with:
-          name: 'android-build'
+          name: 'android-build-aab'
       - name: 'Setup Ruby'
         uses: ruby/setup-ruby@v1.242.0
         with:
