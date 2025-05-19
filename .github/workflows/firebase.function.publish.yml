@@ -18,7 +18,7 @@ jobs:
   deploy:
     environment:
       name: firebase-function
-      url: ${{ steps.deployment.outputs.function_urls }}
+      url: ${{ inputs.function_urls }}
     runs-on: ubuntu-latest
     name: 'Deploy Firebase functions'
     steps:
