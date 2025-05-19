@@ -10,10 +10,17 @@ on:
         description: 'Path of the Firebase functions'
         required: true
         type: string
+      function_urls:
+        description: 'Firebase functions monitoring'
+        required: true
+        type: string
 jobs:
-  publish:
-    name: 'Publish'
+  deploy:
+    environment:
+      name: firebase-function
+      url: ${{ steps.deployment.outputs.function_urls }}
     runs-on: ubuntu-latest
+    name: 'Deploy Firebase functions'
     steps:
       - name: 'Checkout source code'
         uses: actions/checkout@v4.2.2
