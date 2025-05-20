@@ -2,7 +2,7 @@ name: Action - Get the correct Fastlane lane
 on:
   workflow_call:
     outputs:
-      firstword:
+      lane:
         description: 'The Fastlane lane name'
         value: ${{ jobs.lane.outputs.lane }}
     inputs:
