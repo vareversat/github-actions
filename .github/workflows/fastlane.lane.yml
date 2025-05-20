@@ -1,6 +1,10 @@
 name: Action - Get the correct Fastlane lane
 on:
   workflow_call:
+    outputs:
+      firstword:
+        description: 'The Fastlane lane name'
+        value: ${{ jobs.lane.outputs.lane }}
     inputs:
       prerelease_suffix:
         description: 'Suffix to designate a pre-release verion (ex: -rc for v0.1.0-rc)'
