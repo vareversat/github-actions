@@ -1,0 +1,60 @@
+name: Action - Get the release info
+on:
+  workflow_call:
+    outputs:
+      version_name:
+        description: 'The current version name'
+        value: ${{ jobs.release_info.outputs.version_name }}
+      revision_name:
+        description: 'The current revision'
+        value: ${{ jobs.release_info.outputs.revision_name }}
+    inputs:
+      remove_tag_prefix:
+        description: "Remove the prefix of your tag (ex: remove 'v' of v1.0.0)"
+        required: false
+        default: true
+        type: boolean
+      revision_type:
+        description: 'The revision format (date or commit_count)'
+        required: false
+        type: string
+        default: 'commit_count'
+jobs:
+  release_info:
+    name: 'Get Git info'
+    runs-on: ubuntu-latest
+    outputs:
+      version_name: ${{ steps.version.outputs.version_name }}
+      revision_name: ${{ steps.revision.outputs.revision_name }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: 'Extract version'
+        id: version
+        run: |
+          VERISON_NAME=${GITHUB_REF#refs/tags/}
+          if [ "${{ inputs.remove_tag_prefix }}" = "true" ]; then
+            # Remove the prefix (assuming the prefix is the first part before a number)
+            VERISON_NAME=$(echo $VERISON_NAME | sed 's/^[^0-9]*//')
+          fi
+          echo "version_name=$VERISON_NAME" >> $GITHUB_OUTPUT
+          echo "Extracted version = $VERISON_NAME"
+      - name: 'Extract revision number'
+        id: revision
+        run: |
+          case "${{ inputs.revision_type }}" in
+            "date")
+              REVISION_NAME=$(date +%s)
+              ;;
+            "commit_count")
+              REVISION_NAME=$(git rev-list --all --count)
+              ;;
+            *)
+              REVISION_NAME=""
+              echo "${{ inputs.revision_type }} is not a supported revision type"
+              ;;
+          esac
+          echo "revision_name=$REVISION_NAME" >> $GITHUB_OUTPUT
+          echo "Extracted revision = $REVISION_NAME"
