@@ -87,6 +87,7 @@ For more detailed information about reusing workflows, check out the [GitHub doc
 
 - `global.release.yml`: Create project releases
 - `global.page.yml`: Publish Github page
+- `global.release.info.yml`: Generate the version and revision name based on the current Git branch
 
 [Other sections will be added as more workflows are included]
 
