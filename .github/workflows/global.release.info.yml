@@ -21,7 +21,7 @@ on:
         default: 'commit_count'
 jobs:
   release_info:
-    name: 'Get Git info'
+    name: 'Get release info'
     runs-on: ubuntu-latest
     outputs:
       version_name: ${{ steps.version.outputs.version_name }}
@@ -40,8 +40,8 @@ jobs:
             # Remove the prefix (assuming the prefix is the first part before a number)
             VERISON_NAME=$(echo $VERISON_NAME | sed 's/^[^0-9]*//')
           fi
-          echo "version_name=$VERISON_NAME" >> $GITHUB_OUTPUT
           echo "Extracted version = $VERISON_NAME"
+          echo "version_name=$VERISON_NAME" >> $GITHUB_OUTPUT
       - name: 'Extract revision number'
         id: revision
         run: |
@@ -57,5 +57,5 @@ jobs:
               echo "${{ inputs.revision_type }} is not a supported revision type"
               ;;
           esac
-          echo "revision_name=$REVISION_NAME" >> $GITHUB_OUTPUT
           echo "Extracted revision = $REVISION_NAME"
+          echo "revision_name=$REVISION_NAME" >> $GITHUB_OUTPUT
