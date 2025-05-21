@@ -34,7 +34,8 @@ jobs:
       - name: 'Extract version'
         id: version
         run: |
-          VERISON_NAME=${GITHUB_REF#refs/tags/}
+          git fetch --tags -v
+          VERISON_NAME=$(git for-each-ref --sort=-creatordate --format='%(refname:short)' refs/tags | head -n 1)
           if [ "${{ inputs.remove_tag_prefix }}" = "true" ]; then
             # Remove the prefix (assuming the prefix is the first part before a number)
             VERISON_NAME=$(echo $VERISON_NAME | sed 's/^[^0-9]*//')
