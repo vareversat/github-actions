@@ -34,6 +34,14 @@ on:
         required: false
         default: 'false'
         type: string
+      build_number:
+        description: 'The build number passed to --build-number'
+        required: true
+        type: string
+      build_name:
+        description: 'The build name passed to --build-name'
+        required: true
+        type: string
 jobs:
   build_android_apk:
     name: 'Android (APK)'
@@ -42,8 +50,6 @@ jobs:
     steps:
       - name: 'Checkout source code'
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
@@ -63,13 +69,8 @@ jobs:
         run: |
           flutter config --no-analytics
           flutter config --no-cli-animations
-      - name: 'Generate build number'
-        run: |
-          BUILD_NUMBER=$(git rev-list --all --count)
-          echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
-          echo "This build is tagged as $BUILD_NUMBER on $GITHUB_REF"
       - name: 'Build Android APK'
-        run: flutter build apk --dart-define=FLAVOR=${{ inputs.flutter_flavor }} --build-number="$BUILD_NUMBER" --split-per-abi
+        run: flutter build apk --dart-define=FLAVOR=${{ inputs.flutter_flavor }} --build-number=${{ inputs.build_number }} --build-name=${{ inputs.build_name }} --split-per-abi
       - name: 'Save build results (apk)'
         uses: actions/upload-artifact@v4
         with:
@@ -82,8 +83,6 @@ jobs:
     steps:
       - name: 'Checkout source code'
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
@@ -103,13 +102,8 @@ jobs:
         run: |
           flutter config --no-analytics
           flutter config --no-cli-animations
-      - name: 'Generate build number'
-        run: |
-          BUILD_NUMBER=$(git rev-list --all --count)
-          echo "BUILD_NUMBER=$BUILD_NUMBER" >> $GITHUB_ENV
-          echo "This build is tagged as $BUILD_NUMBER on $GITHUB_REF"
       - name: 'Build Android App Bundle'
-        run: flutter build appbundle --dart-define=FLAVOR=${{ inputs.flutter_flavor }} --build-number="$BUILD_NUMBER"
+        run: flutter build appbundle --dart-define=FLAVOR=${{ inputs.flutter_flavor }} --build-number=${{ inputs.build_number }} --build-name=${{ inputs.build_name }}
       - name: 'Save build results (apk)'
         uses: actions/upload-artifact@v4
         with:

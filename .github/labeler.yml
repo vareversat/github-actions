@@ -24,6 +24,7 @@ repo-ci:
   - changed-files:
       - any-glob-to-any-file: '**/repo.*.yml'
 # Branch names
+
 enhancement:
   - head-branch: ['feat']
 bug:
