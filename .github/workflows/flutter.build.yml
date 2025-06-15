@@ -62,7 +62,7 @@ jobs:
           distribution: 'zulu'
           java-version: ${{ inputs.java_version }}
       - name: 'Setup Flutter'
-        uses: subosito/flutter-action@v2.19.0
+        uses: subosito/flutter-action@v2.20.0
         with:
           flutter-version: ${{ inputs.flutter_version }}
       - name: 'Configure Flutter'
@@ -95,7 +95,7 @@ jobs:
           distribution: 'zulu'
           java-version: ${{ inputs.java_version }}
       - name: 'Setup Flutter'
-        uses: subosito/flutter-action@v2.19.0
+        uses: subosito/flutter-action@v2.20.0
         with:
           flutter-version: ${{ inputs.flutter_version }}
       - name: 'Configure Flutter'
