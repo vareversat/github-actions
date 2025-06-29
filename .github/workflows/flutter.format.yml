@@ -14,7 +14,7 @@ jobs:
       - name: 'Checkout source code'
         uses: actions/checkout@v4
       - name: 'Setup flutter action'
-        uses: subosito/flutter-action@v2.20.0
+        uses: subosito/flutter-action@v2.21.0
         with:
           flutter-version: ${{ inputs.flutter_version }}
       - name: 'Configure Flutter'
