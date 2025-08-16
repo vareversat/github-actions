@@ -18,7 +18,7 @@ jobs:
       lane: ${{ steps.fastlane_lane.outputs.lane }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Compute the correct Fastlane lane
         id: fastlane_lane
         run: |
