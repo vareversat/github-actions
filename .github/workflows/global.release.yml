@@ -18,7 +18,7 @@ jobs:
     name: 'Craft the Changelog'
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5.0.1
         with:
           fetch-depth: 0
       - name: 'Compute since and excluded tag'
@@ -54,7 +54,7 @@ jobs:
     needs: [changelog]
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5.0.1
         with:
           fetch-depth: 0
       - name: 'Download CHANGELOG artifacts'

@@ -25,7 +25,7 @@ jobs:
             arch: amd64
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5.0.1
       - name: 'Setup Go action'
         uses: actions/setup-go@v6.0.0
         with:
