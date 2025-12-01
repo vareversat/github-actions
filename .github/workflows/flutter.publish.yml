@@ -28,7 +28,7 @@ jobs:
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: 'Download Artifact'
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: 'android-aab'
       - name: 'Setup Ruby'

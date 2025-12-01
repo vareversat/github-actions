@@ -58,13 +58,13 @@ jobs:
         with:
           fetch-depth: 0
       - name: 'Download CHANGELOG artifacts'
-        uses: actions/download-artifact@v5.0.0
+        uses: actions/download-artifact@v6.0.0
         with:
           path: changelog
           name: changelog
       - name: 'Download builds artifacts'
         if: ${{ inputs.artifacts_pattern != '' }}
-        uses: actions/download-artifact@v5.0.0
+        uses: actions/download-artifact@v6.0.0
         with:
           pattern: ${{ inputs.artifacts_pattern }}
           path: build-artifacts
