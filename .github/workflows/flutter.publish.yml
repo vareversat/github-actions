@@ -34,7 +34,7 @@ jobs:
       - name: 'Setup Ruby'
         uses: ruby/setup-ruby@v1.267.0
         with:
-          ruby-version: '3.4.7'
+          ruby-version: '3.4.8'
           bundler-cache: true
         env:
           BUNDLE_GEMFILE: 'android/Gemfile'
