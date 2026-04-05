@@ -17,7 +17,7 @@ jobs:
       - name: 'Checkout source code'
         uses: actions/checkout@v6.0.2
       - name: 'Setup Go action'
-        uses: actions/setup-go@v6.2.0
+        uses: actions/setup-go@v6.4.0
         with:
           go-version: ${{ inputs.go_version }}
       - name: 'Run linters'
