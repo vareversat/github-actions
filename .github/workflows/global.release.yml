@@ -44,7 +44,7 @@ jobs:
           excludeTagsRegex: ${{ env.EXCLUDE_TAGS_REGEX }}
           addSections: ${{ env.NEW_SECTIONS }}
       - name: 'Upload CHANGELOG.md'
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v7
         with:
           name: changelog
           path: CHANGELOG.md
