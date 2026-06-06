@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.3
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
@@ -57,7 +57,7 @@ jobs:
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: 'Set up JAVA'
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v5.2.0
         with:
           distribution: 'zulu'
           java-version: ${{ inputs.java_version }}
@@ -72,7 +72,7 @@ jobs:
       - name: 'Build Android APK'
         run: flutter build apk --dart-define=FLAVOR=${{ inputs.flutter_flavor }} --build-number=${{ inputs.build_number }} --build-name=${{ inputs.build_name }} --split-per-abi
       - name: 'Save build results (apk)'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: 'android-apk'
           path: build/app/outputs/apk/release/*.apk
@@ -82,7 +82,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.3
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
@@ -90,7 +90,7 @@ jobs:
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: 'Set up JAVA'
-        uses: actions/setup-java@v5
+        uses: actions/setup-java@v5.2.0
         with:
           distribution: 'zulu'
           java-version: ${{ inputs.java_version }}
@@ -105,7 +105,7 @@ jobs:
       - name: 'Build Android App Bundle'
         run: flutter build appbundle --dart-define=FLAVOR=${{ inputs.flutter_flavor }} --build-number=${{ inputs.build_number }} --build-name=${{ inputs.build_name }}
       - name: 'Save build results (apk)'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: 'android-aab'
           path: build/app/outputs/bundle/release/*.aab
