@@ -71,7 +71,7 @@ jobs:
           merge-multiple: true
       - name: 'Generate Github release'
         if: ${{ inputs.artifacts_pattern == '' }}
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3.0.0
         with:
           prerelease: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
           name: '${{ github.ref_name }} 🚀'
