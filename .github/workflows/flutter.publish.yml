@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
       - name: 'Decrypt secret configuration'
@@ -28,7 +28,7 @@ jobs:
       - name: 'Check secret configuration'
         run: ./.github/scripts/check_secrets_decryption.sh
       - name: 'Download Artifact'
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v8.0.1
         with:
           name: 'android-aab'
       - name: 'Setup Ruby'

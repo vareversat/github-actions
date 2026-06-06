@@ -18,7 +18,7 @@ jobs:
     name: 'Craft the Changelog'
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
       - name: 'Compute since and excluded tag'
@@ -44,7 +44,7 @@ jobs:
           excludeTagsRegex: ${{ env.EXCLUDE_TAGS_REGEX }}
           addSections: ${{ env.NEW_SECTIONS }}
       - name: 'Upload CHANGELOG.md'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: changelog
           path: CHANGELOG.md
@@ -54,17 +54,17 @@ jobs:
     needs: [changelog]
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
         with:
           fetch-depth: 0
       - name: 'Download CHANGELOG artifacts'
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v8.0.1
         with:
           path: changelog
           name: changelog
       - name: 'Download builds artifacts'
         if: ${{ inputs.artifacts_pattern != '' }}
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@v8.0.1
         with:
           pattern: ${{ inputs.artifacts_pattern }}
           path: build-artifacts
@@ -78,7 +78,7 @@ jobs:
           body_path: changelog/CHANGELOG.md
       - name: 'Generate Github release with build artifacts'
         if: ${{ inputs.artifacts_pattern != '' }}
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3.0.0
         with:
           prerelease: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
           name: '${{ github.ref_name }} 🚀'
