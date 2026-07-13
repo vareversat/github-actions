@@ -9,6 +9,10 @@ on:
       url:
         description: 'Set the Playstore URL of the app'
         type: string
+      ruby_version:
+        description: 'The Ruby version used for Fastlane (ex: 3.4.10)'
+        required: true
+        type: string
 jobs:
   play_store:
     environment:
@@ -34,7 +38,7 @@ jobs:
       - name: 'Setup Ruby'
         uses: ruby/setup-ruby@v1.312.0
         with:
-          ruby-version: '3.4.10'
+          ruby-version: ${{ inputs.ruby_version }}
           bundler-cache: true
         env:
           BUNDLE_GEMFILE: 'android/Gemfile'
