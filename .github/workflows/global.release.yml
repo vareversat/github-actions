@@ -71,14 +71,14 @@ jobs:
           merge-multiple: true
       - name: 'Generate Github release'
         if: ${{ inputs.artifacts_pattern == '' }}
-        uses: softprops/action-gh-release@v3.0.1
+        uses: softprops/action-gh-release@v3.0.2
         with:
           prerelease: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
           name: '${{ github.ref_name }} 🚀'
           body_path: changelog/CHANGELOG.md
       - name: 'Generate Github release with build artifacts'
         if: ${{ inputs.artifacts_pattern != '' }}
-        uses: softprops/action-gh-release@v3.0.1
+        uses: softprops/action-gh-release@v3.0.2
         with:
           prerelease: ${{ endsWith(github.ref, inputs.prerelease_suffix) }}
           name: '${{ github.ref_name }} 🚀'
