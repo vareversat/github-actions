@@ -21,7 +21,7 @@ jobs:
         with:
           go-version: ${{ inputs.go_version }}
       - name: 'Run linters'
-        uses: wearerequired/lint-action@v2.3.0
+        uses: wearerequired/lint-action@v3.0.2
         with:
           gofmt: true
           github_token: ${{ secrets.GITHUB_TOKEN }}
