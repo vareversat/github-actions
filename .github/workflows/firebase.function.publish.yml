@@ -23,7 +23,7 @@ jobs:
     name: 'Deploy Firebase functions'
     steps:
       - name: 'Checkout source code'
-        uses: actions/checkout@v6.1.0
+        uses: actions/checkout@v7.0.1
       - name: 'Decrypt secret configuration'
         run: ./.github/scripts/decrypt_secret.sh
         env:
