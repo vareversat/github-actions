@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     name: 'Set labels on Pull Request'
     steps:
-      - uses: actions/labeler@v6.2.0
+      - uses: actions/labeler@v7.0.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
